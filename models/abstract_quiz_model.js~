@@ -4,12 +4,12 @@ Math.randomInt = function(x) {
 }
 
 function AbstractQuiz(q) {
-  this.q = q || [];
+   this.q = q || [];
 }
 
 AbstractQuiz.prototype.randomQuestion = function() {
-  var index = Math.randomInt(this.q.length);
-  return this.q[index];
+    var index = Math.randomInt(this.q.length);
+    return this.q[index];
 }
 
 module.exports = AbstractQuiz;
