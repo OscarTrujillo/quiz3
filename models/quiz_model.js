@@ -53,6 +53,14 @@ function Quiz() {
   }
 }
 
+Quiz.prototype.numQuestions = function() {
+  return this.q.length;
+}
+
+Quiz.prototype.getQ = function(x){
+  return this.q[x]['pregunta'];
+}
+
 Quiz.prototype = new AbstractQuiz();
 Quiz.prototype.constructor = Quiz;
 
