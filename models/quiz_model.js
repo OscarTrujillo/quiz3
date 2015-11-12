@@ -8,6 +8,41 @@ function Quiz() {
         return (/^\s*roma\s*$/i).exec(x);
       }
     },
+     { pregunta: '¿Serie de televisión más vista en el mundo?',
+      respuesta: function(x) {
+        return (/^\s*house\s*$/i).exec(x);
+      }
+    },
+    { pregunta: 'Nombre de la montaña más alta del mundo:',
+      respuesta: function(x) {
+        return (/^\s*everest\s*$/i).exec(x);
+      }
+    },
+    { pregunta: 'Isla más grande del archipiélago Canario',
+      respuesta: function(x) {
+        return (/^\s*tenerife\s*$/i).exec(x);
+      }
+    },
+    { pregunta: 'Según la película "Guía del autoestopísta galáctico", ¿Cuál es el sentido de la vida?',
+      respuesta: function(x) {
+        return (42);
+      }
+    },
+    
+        { 
+      pregunta: '¿Que famoso dijo la siguiente frase? "Sólo podemos ver poco del futuro, pero lo suficiente para darnos cuenta de que hay mucho que hacer" ',
+      respuesta: function(x) {
+        return (/^\s*turing\s*$/i).exec(x);
+      }
+    },
+         
+         { pregunta: '¿De que color es el cielo?',
+      respuesta: function(x) {
+        return (/^\s*azul\s*$/i).exec(x);
+      }
+    },
+    
+    
     {
       pregunta: '¿Quien reinaba en España cuando se descubrió América?',
       respuesta: function(x) {
@@ -18,6 +53,9 @@ function Quiz() {
         return false;
       },
     },
+    
+    
+    
     { /* Código inseguro. ¡No ejecute esta pregunta salvo en un
          entorno en el que el código del "alumno" sea fiable!
        */
