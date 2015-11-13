@@ -5,7 +5,7 @@ Plataforma de preguntas rápidas.
 
 Para probarla:
 
-    clone https://github.com/OscarTrujillo/quiz.git
+    git clone https://github.com/OscarTrujillo/quiz.git
     
     npm install
     
