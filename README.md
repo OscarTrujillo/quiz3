@@ -1,5 +1,7 @@
 # Quiz
-###Práctica 6 de Sistemas y Tecnologías Web
+###Práctica 7 de Sistemas y Tecnologías Web
+
+####Segunda versión de Quiz
 
 Plataforma de preguntas rápidas.
 
@@ -10,3 +12,10 @@ Para probarla:
     npm install
     
     npm start
+    
+    
+Enlaces:
+
+Despliegue en Heroku: https://quiz-oscar.herokuapp.com/
+Página personal: https://oscartrujillo.github.io/
+Repositorio: https://github.com/OscarTrujillo/quiz2
