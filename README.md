@@ -17,5 +17,7 @@ Para probarla:
 Enlaces:
 
 Despliegue en Heroku: https://quiz-oscar.herokuapp.com/
+
 Página personal: https://oscartrujillo.github.io/
+
 Repositorio: https://github.com/OscarTrujillo/quiz2
