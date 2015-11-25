@@ -1,57 +1,67 @@
 var AbstractQuiz = require('../models/abstract_quiz_model.js');
 
+
+function Respuesta(answer){
+    
+  if (typeof(answer) === "function"){
+    return answer();
+  }
+  
+  if (typeof(answer) === 'string'|| typeof(answer) === 'number'){
+    return function (x) {return x==answer;};
+  }
+  
+  if(answer instanceof RegExp){
+    return function(x){return (answer).exec(x);};
+  }
+  
+}
+
+
+
+
+
+
+
 function Quiz() {
   AbstractQuiz.call(this);
   this.q.push(
     { pregunta: '¿Capital de Italia?',
-      respuesta: function(x) {
-        return (/^\s*roma\s*$/i).exec(x);
-      }
+      respuesta: new Respuesta(/^\s*roma\s*$/i)
     },
      { pregunta: '¿Serie de televisión más vista en el mundo?',
-      respuesta: function(x) {
-        return (/^\s*house\s*$/i).exec(x);
-      }
+      respuesta: new Respuesta(/^\s*house\s*$/i)
+      
     },
     { pregunta: 'Nombre de la montaña más alta del mundo:',
-      respuesta: function(x) {
-        return (/^\s*everest\s*$/i).exec(x);
-      }
-    },
-    { pregunta: 'Isla más grande del archipiélago Canario',
-      respuesta: function(x) {
-        return (/^\s*tenerife\s*$/i).exec(x);
-      }
-    },
-    { pregunta: 'Según la película "Guía del autoestopísta galáctico", ¿Cuál es el sentido de la vida?',
-      respuesta: function(x) {
-        return (42);
-      }
+      respuesta: new Respuesta(/^\s*everest\s*$/i)
+      
     },
     
-        { 
+    { pregunta: 'Isla más grande del archipiélago Canario',
+      respuesta: new Respuesta(/^\s*tenerife\s*$/i)
+      
+    },
+    
+    { pregunta: 'Según la película "Guía del autoestopísta galáctico", ¿Cuál es el sentido de la vida?',
+      respuesta: new Respuesta(42)
+    },
+    
+    { 
       pregunta: '¿Que famoso dijo la siguiente frase? "Sólo podemos ver poco del futuro, pero lo suficiente para darnos cuenta de que hay mucho que hacer" ',
-      respuesta: function(x) {
-        return (/^\s*turing\s*$/i).exec(x);
-      }
+      respuesta: new Respuesta(/^\s*turing\s*$/i)
     },
          
-         { pregunta: '¿De que color es el cielo?',
-      respuesta: function(x) {
-        return (/^\s*azul\s*$/i).exec(x);
-      }
-    },
+    { 
+      pregunta: '¿De que color es el cielo?',
+      respuesta: new Respuesta(/^\s*azul\s*$/i)
+    },  
     
     
     {
       pregunta: '¿Quien reinaba en España cuando se descubrió América?',
-      respuesta: function(x) {
-        if ((/\b(Isabel\s+y?\s*Fernando)|(Fernando\s+[ey]?\s*Isabel)\b/i).exec(x)) {
-          return true;
-        }
-        if ((/\breyes\s+cat[oó]licos\b/i).exec(x)) { return true; }
-        return false;
-      },
+      respuesta: new Respuesta(/\b(Isabel\s+y?\s*Fernando)|(Fernando\s+[ey]?\s*Isabel)|(reyes\s+cat[oó]licos)\b/i)
+      
     },
     
     
@@ -83,9 +93,7 @@ function Quiz() {
       var n2 = Math.randomInt(9)+1;
       self.q.push(
         { pregunta: '¿ '+n1+'x'+n2+"= ?",
-          respuesta: function(x) {
-            return (x == n1*n2);
-        }
+          respuesta: new Respuesta(n1*n2)
       })
     })();
   }
@@ -96,3 +104,5 @@ Quiz.prototype = new AbstractQuiz();
 Quiz.prototype.constructor = Quiz;
 
 module.exports = Quiz;
+
+
