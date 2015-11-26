@@ -1,13 +1,13 @@
 # Quiz
-###Práctica 7 de Sistemas y Tecnologías Web
+###Práctica 9 de Sistemas y Tecnologías Web
 
-####Segunda versión de Quiz
+####Tercera versión de Quiz
 
 Plataforma de preguntas rápidas.
 
 Para probarla:
 
-    git clone https://github.com/OscarTrujillo/quiz.git
+    git clone https://github.com/OscarTrujillo/quiz3.git
     
     npm install
     
@@ -16,8 +16,8 @@ Para probarla:
     
 Enlaces:
 
-Despliegue en Heroku: https://quiz-oscar.herokuapp.com/
+Despliegue en Heroku: https://quiz3-oscar.herokuapp.com/
 
 Página personal: https://oscartrujillo.github.io/
 
-Repositorio: https://github.com/OscarTrujillo/quiz2
+Repositorio: https://github.com/OscarTrujillo/quiz3
