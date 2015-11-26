@@ -2,7 +2,6 @@ var AbstractQuiz = require('../models/abstract_quiz_model.js');
 
 
 function Respuesta(answer){
-    
   if (typeof(answer) === "function"){
     return answer();
   }
@@ -15,17 +14,39 @@ function Respuesta(answer){
     return function(x){return (answer).exec(x);};
   }
   
+  if(answer instanceof Array){
+    var respues=0;
+    return function(x){
+        if(x.length==answer.length){
+          
+            var tam=answer.length
+            for(var i=0;i<tam;i++){
+              for(var j=0; j<tam;j++){
+                  if (x[i]==answer[j]) {
+                    respues++;
+                  }
+              }
+            }
+            if (respues==tam){
+              respues=0;
+              return true;
+            }
+            else 
+              return false;
+        }
+        else 
+          return false;
+  }
+}
+  
 }
 
 function Pregunta(quest){
       this.quest = quest; 
-      
       this.pregunta = quest
 }
 
 
-Pregunta.prototype = new Pregunta();
-Pregunta.prototype.constructor = Pregunta;
 
 function PreguntaCorta(quest){
     Pregunta.call(this, quest);
@@ -34,9 +55,6 @@ function PreguntaCorta(quest){
 
 
 
-Pregunta.prototype = new Pregunta();
-Pregunta.prototype.constructor = Pregunta;
-
 function PreguntaLarga(quest){
     Pregunta.call(this, quest);
     this.intro = "<textarea type='text' name='respuesta' placeholder='Responda aquí'></textarea>";
@@ -44,15 +62,44 @@ function PreguntaLarga(quest){
 
 
 
+function PreguntaSeleccionSimple(quest, options){
+    
+    Pregunta.call(this, quest);
+    this.intro = "";
+      for(var i = 0; i<options.length;i++){
+        this.intro += "<input type='radio' name='respuesta' value='"+options[i]+"'>"+options[i]+"<br>";
+      }
+      
+}
+
+function PreguntaSeleccionMultiple(quest, options){
+    
+    Pregunta.call(this, quest,options);
+    this.intro = "";
+    var opciones="";
+      for(var i = 0; i<options.length;i++){
+        this.intro += "<input type='checkbox' name='respuesta[]' value='"+options[i]+"'>"+options[i]+"<br>";
+        //opciones += "<option value='"+options[i]+"'>"+options[i]+"</option> <br>";
+      }
+      
+      //this.intro = "<select name='respuesta[]' multiple>"+opciones+"</select>"
+      
+}
+
+
 function Quiz() {
   AbstractQuiz.call(this);
   this.q.push(
-    { pregunta: new PreguntaCorta('¿Capital de Italia?'),
+    
+    { pregunta: new PreguntaSeleccionMultiple('¿Que animales son mamíferos?', ['Ornitorrinco', 'Canguro', 'Ballena', 'Gato']),
+      respuesta: new Respuesta(['Ballena', 'Gato'])},
+    
+    
+    { pregunta: new PreguntaSeleccionSimple('¿Capital de Italia?', ['Madrid', 'Roma', 'Atenas']),
       respuesta: new Respuesta(/^\s*roma\s*$/i)
     },
      { pregunta: new PreguntaCorta('¿Serie de televisión más vista en el mundo?'),
        respuesta: new Respuesta(/^\s*house\s*$/i)
-      
     },
     { pregunta: new PreguntaCorta('Nombre de la montaña más alta del mundo:'),
       respuesta: new Respuesta(/^\s*everest\s*$/i)
